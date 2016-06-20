@@ -1,7 +1,16 @@
 ---
-- name: install ntpd
-  yum: name=ntp state=installed
+- name: loading os specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: install ntp package
+  package:
+    name: "{{ ntp_package }}"
+    state: installed
   notify:
     restart ntpd
-- name: start ntpd
-  service: name=ntpd state=running enabled=true
+
+- name: start ntp service
+  service:
+    name: "{{ ntp_service }}"
+    state: running
+    enabled: true

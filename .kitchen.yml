@@ -1,0 +1,19 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: ansible_push
+  playbook: test/converge/default/ansible/site.yml
+  ansible_config: test/converge/default/ansible/ansible.cfg
+
+platforms:
+  - name: centos/7
+    driver_config:
+        chef_omnibus_url: nil
+  - name: ubuntu/trusty64
+    driver_config:
+        chef_omnibus_url: nil
+
+suites:
+  - name: default
