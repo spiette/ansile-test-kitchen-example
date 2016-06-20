@@ -1,0 +1,7 @@
+---
+- name: install ntpd
+  yum: name=ntp state=installed
+  notify:
+    restart ntpd
+- name: start ntpd
+  service: name=ntpd state=running enabled=true
